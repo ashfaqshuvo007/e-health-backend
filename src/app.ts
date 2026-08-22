@@ -1,23 +1,24 @@
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import express, {
-	type Application,
-	type Request,
-	type Response,
+  type Application,
+  type Request,
+  type Response,
 } from "express";
 import httpStatus from "http-status";
 import config from "./app/config";
 import { globalErrorHandler } from "./app/middleware/globalErrorHandler";
 import { notFound } from "./app/middleware/notFound";
 import { AuthRoutes } from "./app/module/auth/auth.route";
+import { redisClient } from "./app/lib/redis";
 
 const app: Application = express();
 
 app.use(
-	cors({
-		origin: config.frontend_url,
-		credentials: true,
-	}),
+  cors({
+    origin: config.frontend_url,
+    credentials: true,
+  }),
 );
 
 // Enable URL-encoded form data parsing
@@ -31,10 +32,27 @@ app.use("/api/v1/auth", AuthRoutes);
 
 // Basic route
 app.get("/", async (req: Request, res: Response) => {
-	res.status(httpStatus.OK).json({
-		success: true,
-		message: "Welcome to Algodevs E-Healthcare System Backend",
-	});
+  res.status(httpStatus.OK).json({
+    success: true,
+    message: "Welcome to Algodevs E-Healthcare System Backend",
+  });
+});
+
+// Testing Redis
+app.get("/test", async (req: Request, res: Response) => {
+  try {
+    await redisClient.set("forgot-password-otp:patient1@gmail.com", "123456", {
+      expiration: {
+        type: "EX",
+        value: 60,
+      },
+    });
+    res.status(httpStatus.OK).json({
+      success: true,
+      message: "Welcome to Algodevs E-Healthcare System Backend",
+      data: null,
+    });
+  } catch (error) {}
 });
 
 app.use(globalErrorHandler);
