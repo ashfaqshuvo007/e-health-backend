@@ -34,6 +34,8 @@ export type UserMinAggregateOutputType = {
 	emailVerified: boolean | null;
 	role: $Enums.Role | null;
 	status: $Enums.UserStatus | null;
+	imageUrl: string | null;
+	imagePublicId: string | null;
 	needPasswordChange: boolean | null;
 	isDeleted: boolean | null;
 	deletedAt: Date | null;
@@ -51,6 +53,8 @@ export type UserMaxAggregateOutputType = {
 	emailVerified: boolean | null;
 	role: $Enums.Role | null;
 	status: $Enums.UserStatus | null;
+	imageUrl: string | null;
+	imagePublicId: string | null;
 	needPasswordChange: boolean | null;
 	isDeleted: boolean | null;
 	deletedAt: Date | null;
@@ -68,6 +72,8 @@ export type UserCountAggregateOutputType = {
 	emailVerified: number;
 	role: number;
 	status: number;
+	imageUrl: number;
+	imagePublicId: number;
 	needPasswordChange: number;
 	isDeleted: number;
 	deletedAt: number;
@@ -86,6 +92,8 @@ export type UserMinAggregateInputType = {
 	emailVerified?: true;
 	role?: true;
 	status?: true;
+	imageUrl?: true;
+	imagePublicId?: true;
 	needPasswordChange?: true;
 	isDeleted?: true;
 	deletedAt?: true;
@@ -103,6 +111,8 @@ export type UserMaxAggregateInputType = {
 	emailVerified?: true;
 	role?: true;
 	status?: true;
+	imageUrl?: true;
+	imagePublicId?: true;
 	needPasswordChange?: true;
 	isDeleted?: true;
 	deletedAt?: true;
@@ -120,6 +130,8 @@ export type UserCountAggregateInputType = {
 	emailVerified?: true;
 	role?: true;
 	status?: true;
+	imageUrl?: true;
+	imagePublicId?: true;
 	needPasswordChange?: true;
 	isDeleted?: true;
 	deletedAt?: true;
@@ -217,6 +229,8 @@ export type UserGroupByOutputType = {
 	emailVerified: boolean;
 	role: $Enums.Role;
 	status: $Enums.UserStatus;
+	imageUrl: string | null;
+	imagePublicId: string | null;
 	needPasswordChange: boolean;
 	isDeleted: boolean;
 	deletedAt: Date | null;
@@ -253,6 +267,8 @@ export type UserWhereInput = {
 	emailVerified?: Prisma.BoolFilter<"User"> | boolean;
 	role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role;
 	status?: Prisma.EnumUserStatusFilter<"User"> | $Enums.UserStatus;
+	imageUrl?: Prisma.StringNullableFilter<"User"> | string | null;
+	imagePublicId?: Prisma.StringNullableFilter<"User"> | string | null;
 	needPasswordChange?: Prisma.BoolFilter<"User"> | boolean;
 	isDeleted?: Prisma.BoolFilter<"User"> | boolean;
 	deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null;
@@ -274,6 +290,8 @@ export type UserOrderByWithRelationInput = {
 	emailVerified?: Prisma.SortOrder;
 	role?: Prisma.SortOrder;
 	status?: Prisma.SortOrder;
+	imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder;
+	imagePublicId?: Prisma.SortOrderInput | Prisma.SortOrder;
 	needPasswordChange?: Prisma.SortOrder;
 	isDeleted?: Prisma.SortOrder;
 	deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
@@ -296,6 +314,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<
 		emailVerified?: Prisma.BoolFilter<"User"> | boolean;
 		role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role;
 		status?: Prisma.EnumUserStatusFilter<"User"> | $Enums.UserStatus;
+		imageUrl?: Prisma.StringNullableFilter<"User"> | string | null;
+		imagePublicId?: Prisma.StringNullableFilter<"User"> | string | null;
 		needPasswordChange?: Prisma.BoolFilter<"User"> | boolean;
 		isDeleted?: Prisma.BoolFilter<"User"> | boolean;
 		deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null;
@@ -319,6 +339,8 @@ export type UserOrderByWithAggregationInput = {
 	emailVerified?: Prisma.SortOrder;
 	role?: Prisma.SortOrder;
 	status?: Prisma.SortOrder;
+	imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder;
+	imagePublicId?: Prisma.SortOrderInput | Prisma.SortOrder;
 	needPasswordChange?: Prisma.SortOrder;
 	isDeleted?: Prisma.SortOrder;
 	deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
@@ -350,6 +372,11 @@ export type UserScalarWhereWithAggregatesInput = {
 	status?:
 		| Prisma.EnumUserStatusWithAggregatesFilter<"User">
 		| $Enums.UserStatus;
+	imageUrl?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null;
+	imagePublicId?:
+		| Prisma.StringNullableWithAggregatesFilter<"User">
+		| string
+		| null;
 	needPasswordChange?: Prisma.BoolWithAggregatesFilter<"User"> | boolean;
 	isDeleted?: Prisma.BoolWithAggregatesFilter<"User"> | boolean;
 	deletedAt?:
@@ -371,6 +398,8 @@ export type UserCreateInput = {
 	emailVerified?: boolean;
 	role?: $Enums.Role;
 	status?: $Enums.UserStatus;
+	imageUrl?: string | null;
+	imagePublicId?: string | null;
 	needPasswordChange?: boolean;
 	isDeleted?: boolean;
 	deletedAt?: Date | string | null;
@@ -389,6 +418,8 @@ export type UserUncheckedCreateInput = {
 	emailVerified?: boolean;
 	role?: $Enums.Role;
 	status?: $Enums.UserStatus;
+	imageUrl?: string | null;
+	imagePublicId?: string | null;
 	needPasswordChange?: boolean;
 	isDeleted?: boolean;
 	deletedAt?: Date | string | null;
@@ -409,6 +440,11 @@ export type UserUpdateInput = {
 	emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 	role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
 	status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+	imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	imagePublicId?:
+		| Prisma.NullableStringFieldUpdateOperationsInput
+		| string
+		| null;
 	needPasswordChange?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 	isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 	deletedAt?:
@@ -433,6 +469,11 @@ export type UserUncheckedUpdateInput = {
 	emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 	role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
 	status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+	imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	imagePublicId?:
+		| Prisma.NullableStringFieldUpdateOperationsInput
+		| string
+		| null;
 	needPasswordChange?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 	isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 	deletedAt?:
@@ -455,6 +496,8 @@ export type UserCreateManyInput = {
 	emailVerified?: boolean;
 	role?: $Enums.Role;
 	status?: $Enums.UserStatus;
+	imageUrl?: string | null;
+	imagePublicId?: string | null;
 	needPasswordChange?: boolean;
 	isDeleted?: boolean;
 	deletedAt?: Date | string | null;
@@ -474,6 +517,11 @@ export type UserUpdateManyMutationInput = {
 	emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 	role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
 	status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+	imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	imagePublicId?:
+		| Prisma.NullableStringFieldUpdateOperationsInput
+		| string
+		| null;
 	needPasswordChange?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 	isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 	deletedAt?:
@@ -497,6 +545,11 @@ export type UserUncheckedUpdateManyInput = {
 	emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 	role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
 	status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+	imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	imagePublicId?:
+		| Prisma.NullableStringFieldUpdateOperationsInput
+		| string
+		| null;
 	needPasswordChange?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 	isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 	deletedAt?:
@@ -523,6 +576,8 @@ export type UserCountOrderByAggregateInput = {
 	emailVerified?: Prisma.SortOrder;
 	role?: Prisma.SortOrder;
 	status?: Prisma.SortOrder;
+	imageUrl?: Prisma.SortOrder;
+	imagePublicId?: Prisma.SortOrder;
 	needPasswordChange?: Prisma.SortOrder;
 	isDeleted?: Prisma.SortOrder;
 	deletedAt?: Prisma.SortOrder;
@@ -540,6 +595,8 @@ export type UserMaxOrderByAggregateInput = {
 	emailVerified?: Prisma.SortOrder;
 	role?: Prisma.SortOrder;
 	status?: Prisma.SortOrder;
+	imageUrl?: Prisma.SortOrder;
+	imagePublicId?: Prisma.SortOrder;
 	needPasswordChange?: Prisma.SortOrder;
 	isDeleted?: Prisma.SortOrder;
 	deletedAt?: Prisma.SortOrder;
@@ -557,6 +614,8 @@ export type UserMinOrderByAggregateInput = {
 	emailVerified?: Prisma.SortOrder;
 	role?: Prisma.SortOrder;
 	status?: Prisma.SortOrder;
+	imageUrl?: Prisma.SortOrder;
+	imagePublicId?: Prisma.SortOrder;
 	needPasswordChange?: Prisma.SortOrder;
 	isDeleted?: Prisma.SortOrder;
 	deletedAt?: Prisma.SortOrder;
@@ -612,6 +671,8 @@ export type UserCreateWithoutPatientInput = {
 	emailVerified?: boolean;
 	role?: $Enums.Role;
 	status?: $Enums.UserStatus;
+	imageUrl?: string | null;
+	imagePublicId?: string | null;
 	needPasswordChange?: boolean;
 	isDeleted?: boolean;
 	deletedAt?: Date | string | null;
@@ -629,6 +690,8 @@ export type UserUncheckedCreateWithoutPatientInput = {
 	emailVerified?: boolean;
 	role?: $Enums.Role;
 	status?: $Enums.UserStatus;
+	imageUrl?: string | null;
+	imagePublicId?: string | null;
 	needPasswordChange?: boolean;
 	isDeleted?: boolean;
 	deletedAt?: Date | string | null;
@@ -676,6 +739,11 @@ export type UserUpdateWithoutPatientInput = {
 	emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 	role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
 	status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+	imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	imagePublicId?:
+		| Prisma.NullableStringFieldUpdateOperationsInput
+		| string
+		| null;
 	needPasswordChange?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 	isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 	deletedAt?:
@@ -699,6 +767,11 @@ export type UserUncheckedUpdateWithoutPatientInput = {
 	emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 	role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
 	status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+	imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	imagePublicId?:
+		| Prisma.NullableStringFieldUpdateOperationsInput
+		| string
+		| null;
 	needPasswordChange?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 	isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 	deletedAt?:
@@ -724,6 +797,8 @@ export type UserSelect<
 		emailVerified?: boolean;
 		role?: boolean;
 		status?: boolean;
+		imageUrl?: boolean;
+		imagePublicId?: boolean;
 		needPasswordChange?: boolean;
 		isDeleted?: boolean;
 		deletedAt?: boolean;
@@ -748,6 +823,8 @@ export type UserSelectCreateManyAndReturn<
 		emailVerified?: boolean;
 		role?: boolean;
 		status?: boolean;
+		imageUrl?: boolean;
+		imagePublicId?: boolean;
 		needPasswordChange?: boolean;
 		isDeleted?: boolean;
 		deletedAt?: boolean;
@@ -771,6 +848,8 @@ export type UserSelectUpdateManyAndReturn<
 		emailVerified?: boolean;
 		role?: boolean;
 		status?: boolean;
+		imageUrl?: boolean;
+		imagePublicId?: boolean;
 		needPasswordChange?: boolean;
 		isDeleted?: boolean;
 		deletedAt?: boolean;
@@ -790,6 +869,8 @@ export type UserSelectScalar = {
 	emailVerified?: boolean;
 	role?: boolean;
 	status?: boolean;
+	imageUrl?: boolean;
+	imagePublicId?: boolean;
 	needPasswordChange?: boolean;
 	isDeleted?: boolean;
 	deletedAt?: boolean;
@@ -810,6 +891,8 @@ export type UserOmit<
 	| "emailVerified"
 	| "role"
 	| "status"
+	| "imageUrl"
+	| "imagePublicId"
 	| "needPasswordChange"
 	| "isDeleted"
 	| "deletedAt"
@@ -851,6 +934,8 @@ export type $UserPayload<
 			emailVerified: boolean;
 			role: $Enums.Role;
 			status: $Enums.UserStatus;
+			imageUrl: string | null;
+			imagePublicId: string | null;
 			needPasswordChange: boolean;
 			isDeleted: boolean;
 			deletedAt: Date | null;
@@ -1470,6 +1555,8 @@ export interface UserFieldRefs {
 	readonly emailVerified: Prisma.FieldRef<"User", "Boolean">;
 	readonly role: Prisma.FieldRef<"User", "Role">;
 	readonly status: Prisma.FieldRef<"User", "UserStatus">;
+	readonly imageUrl: Prisma.FieldRef<"User", "String">;
+	readonly imagePublicId: Prisma.FieldRef<"User", "String">;
 	readonly needPasswordChange: Prisma.FieldRef<"User", "Boolean">;
 	readonly isDeleted: Prisma.FieldRef<"User", "Boolean">;
 	readonly deletedAt: Prisma.FieldRef<"User", "DateTime">;
