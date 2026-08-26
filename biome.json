@@ -29,7 +29,8 @@
       },
       "style": {
         "noNonNullAssertion": "info",
-        "useNodejsImportProtocol": "info"
+        "useNodejsImportProtocol": "info",
+        "useImportType": "off"
       }
     },
     "includes": ["**", "!src/app/templates"]
