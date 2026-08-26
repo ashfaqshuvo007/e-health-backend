@@ -1,7 +1,10 @@
 /** biome-ignore-all lint/style/useConst: <explanation> */
 
+import crypto from "node:crypto";
+import path from "node:path";
 import bcrypt from "bcryptjs";
-
+import ejs from "ejs";
+import type { TokenPayload } from "google-auth-library";
 import type { JwtPayload, SignOptions } from "jsonwebtoken";
 import {
 	AuthProvider,
@@ -9,7 +12,10 @@ import {
 	UserStatus,
 } from "../../../generated/prisma/enums";
 import config from "../../config";
+import { googleClient } from "../../lib/google";
+import { transporter } from "../../lib/nodemailer";
 import { prisma } from "../../lib/prisma";
+import { redisClient } from "../../lib/redis";
 import { jwtUtils } from "../../utils/jwt";
 import type {
 	IForgotPasswordPayload,
@@ -20,14 +26,6 @@ import type {
 	IResetPasswordPayload,
 	IVerfiyUserEmailPayload,
 } from "./auth.interface";
-import { googleClient } from "../../lib/google";
-import type { TokenPayload } from "google-auth-library";
-import crypto from "crypto";
-import { redisClient } from "../../lib/redis";
-import { transporter } from "../../lib/nodemailer";
-import { configDotenv } from "dotenv";
-import ejs from "ejs";
-import path from "path";
 
 const registerPatient = async (payload: IRegisterPatientPayload) => {
 	const { name, password, patient: patientData } = payload;
