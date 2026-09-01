@@ -2,14 +2,16 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import express, {
 	type Application,
+	NextFunction,
 	type Request,
 	type Response,
 } from "express";
 import httpStatus from "http-status";
 import config from "./app/config";
-import { redisClient } from "./app/lib/redis";
+import { BkashConfig } from "./app/lib/bkash";
 import { globalErrorHandler } from "./app/middleware/globalErrorHandler";
 import { notFound } from "./app/middleware/notFound";
+import { AppointmentRoutes } from "./app/module/appointment/appointment.route";
 import { AuthRoutes } from "./app/module/auth/auth.route";
 import { UserRoutes } from "./app/module/user/user.route";
 
@@ -31,6 +33,7 @@ app.use(cookieParser());
 
 app.use("/api/v1/auth", AuthRoutes);
 app.use("/api/v1/user", UserRoutes);
+app.use("/api/v1/appointment", AppointmentRoutes);
 
 // Basic route
 app.get("/", async (req: Request, res: Response) => {
@@ -41,20 +44,17 @@ app.get("/", async (req: Request, res: Response) => {
 });
 
 // Testing Redis
-app.get("/test", async (req: Request, res: Response) => {
+app.get("/test", async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		await redisClient.set("forgot-password-otp:patient1@gmail.com", "123456", {
-			expiration: {
-				type: "EX",
-				value: 60,
-			},
-		});
+		const grantIdTokenResult = await BkashConfig.getBkashIdToken();
 		res.status(httpStatus.OK).json({
 			success: true,
 			message: "Welcome to Algodevs E-Healthcare System Backend",
 			data: null,
 		});
-	} catch (error) {}
+	} catch (error) {
+		next(error);
+	}
 });
 
 app.use(globalErrorHandler);
